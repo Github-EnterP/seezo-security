@@ -1,0 +1,41 @@
+name: Security Scan with Seezo
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js (or any other required language)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Or specify your language version
+
+    - name: Install dependencies
+      run: npm install  
+
+    - name: Install Seezo CLI (if applicable)
+      run: |
+        curl -sSL https://seezo.com/install.sh | bash 
+
+    - name: Run Seezo Security Scan
+      run: |
+        seezo security scan ./path/to/scan  
+      env:
+        SEEZO_API_KEY: ${{ secrets.SEEZO_API_KEY }} 
+
+    - name: Upload security results (optional)
+      uses: actions/upload-artifact@v3
+      with:
+        name: seezo-security-report
+        path: ./seezo-report.json
