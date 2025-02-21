@@ -30,7 +30,7 @@ jobs:
 
     - name: Run Seezo Security Scan
       run: |
-        seezo security scan ./path/to/scan  
+        seezo security scan https://app.seezo.io/projects/cace28bb-4a3c-4923-b1df-60d26a28e39d/assessments/e0ad8172-d502-4ae6-b77e-6c2d8d657f50
       env:
         SEEZO_API_KEY: ${{ secrets.SEEZO_API_KEY }} 
 
