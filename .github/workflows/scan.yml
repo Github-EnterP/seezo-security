@@ -21,9 +21,6 @@ jobs:
       with:
         node-version: '16'  # Or specify your language version
 
-    - name: Install dependencies
-      run: npm install  
-
     - name: Install Seezo CLI (if applicable)
       run: |
         curl -sSL https://seezo.com/install.sh | bash 
